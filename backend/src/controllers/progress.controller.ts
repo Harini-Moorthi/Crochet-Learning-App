@@ -4,8 +4,20 @@ import { AuthRequest } from '../middleware/auth';
 
 export const updateLessonProgress = async (req: AuthRequest, res: Response) => {
   try {
-    const { lessonId, progressPercentage, completed } = req.body;
+    // Handle both lessonId and lesson_id for compatibility
+    const { lessonId, lesson_id, progressPercentage, completed } = req.body;
     const userId = req.user?.userId;
+    
+    const finalLessonId = lessonId || lesson_id;
+    
+    if (!finalLessonId || !userId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Lesson ID and user ID are required'
+      });
+    }
+
+    console.log('Updating progress:', { userId, lessonId: finalLessonId, completed });
 
     const { rows } = await db.query(`
       INSERT INTO user_progress (user_id, lesson_id, progress_percentage, completed, completed_at)
@@ -17,7 +29,7 @@ export const updateLessonProgress = async (req: AuthRequest, res: Response) => {
         completed_at = $5,
         updated_at = CURRENT_TIMESTAMP
       RETURNING *
-    `, [userId, lessonId, progressPercentage, completed, completed ? new Date() : null]);
+    `, [userId, finalLessonId, progressPercentage, completed, completed ? new Date() : null]);
 
     res.json({
       success: true,
@@ -25,6 +37,7 @@ export const updateLessonProgress = async (req: AuthRequest, res: Response) => {
       data: rows[0]
     });
   } catch (error: any) {
+    console.error('Progress update error:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to update progress',
