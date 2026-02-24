@@ -1,6 +1,5 @@
 const { Pool } = require('pg');
 
-// Use direct connection parameters that work
 const pool = new Pool({
   host: 'localhost',
   port: 5432,
@@ -12,9 +11,8 @@ const pool = new Pool({
 
 async function showCourseData() {
   try {
-    console.log('🔍 Checking course data structure...\n');
+    console.log('🔍 Checking course data...');
     
-    // Show courses
     console.log('📚 COURSES:');
     const { rows: courses } = await pool.query(`
       SELECT id, title, level, duration_minutes, category_id 

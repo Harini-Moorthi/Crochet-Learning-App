@@ -6,9 +6,8 @@ const pool = new Pool({
 
 async function setupDatabase() {
   try {
-    console.log('🔧 Setting up database schema...');
+    console.log('🔧 Setting up database...');
     
-    // Create categories table
     await pool.query(`
       CREATE TABLE IF NOT EXISTS categories (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

@@ -1,6 +1,5 @@
 const { Pool } = require('pg');
 
-// Use direct connection parameters that work
 const pool = new Pool({
   host: 'localhost',
   port: 5432,
@@ -12,9 +11,8 @@ const pool = new Pool({
 
 async function addCourseImages() {
   try {
-    console.log('🖼️ Adding course images...\n');
+    console.log('🖼️ Adding course images...');
     
-    // Define course images
     const courseImages = [
       {
         title: 'Basic Crochet for Beginners',
