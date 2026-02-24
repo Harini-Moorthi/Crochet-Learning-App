@@ -13,6 +13,7 @@ import enrollmentRoutes from './routes/enrollment.routes';
 import progressRoutes from './routes/progress.routes';
 import lessonRoutes from './routes/lesson.routes';
 import patternRoutes from './routes/pattern.routes';
+import cloudinaryRoutes from './routes/cloudinary.routes';
 
 dotenv.config();
 
@@ -49,8 +50,7 @@ app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/lessons', lessonRoutes);
 app.use('/api/patterns', patternRoutes);
-
-
+app.use('/api/cloudinary', cloudinaryRoutes);
 
 const PORT = process.env.PORT || 5000;
 

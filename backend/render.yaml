@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: crochet-backend
+    env: node
+    buildCommand: "npm run build"
+    startCommand: "npm start"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+
+databases:
+  - name: crochet-db
+    databaseName: crochet_app

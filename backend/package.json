@@ -21,7 +21,10 @@
     "test-auth": "node scripts/test-auth.js",
     "fix-progress-table": "node scripts/fix-user-progress-table.js",
     "add-course-images": "node scripts/add-course-images.js",
-    "add-local-images": "node scripts/add-local-images.js"
+    "add-local-images": "node scripts/add-local-images.js",
+    "migrate-cloudinary": "node scripts/migrate-to-cloudinary.js",
+    "add-unsplash-images": "node scripts/add-unsplash-images.js",
+    "test-cloudinary": "node scripts/test-cloudinary.js"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +32,7 @@
   "type": "commonjs",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.9.0",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
@@ -36,6 +40,7 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1",
+    "node-fetch": "^3.3.2",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.18.0",
